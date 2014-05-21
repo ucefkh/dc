@@ -1,0 +1,49 @@
+<!doctype HTML>
+<html>
+    <head>
+    <title>Pilot</title>
+        <link rel="stylesheet" type="text/css" href="static/style.css">
+    </head>
+    <body>
+    
+      <div class="switch">
+          <ul class="banner">
+            <li class="darkblue"></li>
+            <li class="lightblue"></li>
+            <li class="aqua"></li>
+            <li class="orange"></li>
+            <li class="grey"></li>
+            <li class="lightgrey"></li> 
+          </ul>
+        
+        <div class="demo">  
+
+      <h2>sign in</h2>
+     
+      {% for message in form.email.errors %}
+        <div class="flash">{{ message }}</div>
+      {% endfor %}
+       
+      {% for message in form.password.errors %}
+        <div class="flash">{{ message }}</div>
+      {% endfor %}
+       
+       <form action = "" method="post">
+        {{ form.hidden_tag() }}
+         
+        {{ form.email(class_ = 'inputbox', placeholder = "ENTER EMAIL") }}
+         
+        {{ form.password(class_ = 'inputbox', placeholder = "•••••••••••") }} </br>
+         
+        <input class = "button" type="submit" value="Login">
+      </form>
+
+    </div>
+    </div>
+
+    <div style = "color : #FFF; text-align: center; padding: 40px;"> Hexagon realtime image search, like quora </div>  
+
+    </body>
+</html>
+
+<!-- extend base layout -->

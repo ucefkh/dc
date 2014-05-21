@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js"  style="background : #fff;">
+	<head>
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='dashboard/style.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='course/style.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='dashboard/simplegrid.css') }}">
+		<script src="{{ url_for('static', filename='course/medium.js') }}"></script>
+        <link href="{{ url_for('static', filename='course/medium.css') }}">
+
+		<link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+		<title>{{user}}</title>
+	</head>
+	<body style="background : #fff;">
+		<div id='content'>
+
+		<div class="grid grid-pad">
+		    <div class="col-3-12">
+		       <div id = "contextual" class="content">
+		       		<ul class="banner">
+			            <li class="darkblue"></li>
+			            <li class="lightblue"></li>
+			            <li class="aqua"></li>
+			            <li class="orange"></li>
+			            <li class="grey"></li>
+			            <li class="lightgrey"></li> 
+			          </ul>
+		           <div id = "brand">
+		           		<img id = "logo" src="{{ url_for('static', filename='dashboard/logo.png') }}">
+		          	 	<div id = "pilot">pilot</div>
+		           </div>
+
+
+		           <div id = "profile">
+		           	
+		           		<img src="{{avatar}}" id = "avatar">
+		           	<div id = "info">	
+		           		<h3>{{user}}</h3><br>
+		           		<h5>Last Seen : {{lastseen}}</h5>
+		           	</div>
+		           </div>
+
+		           <div id = "context">
+		           		<h6>Recent Activity</h6>
+
+		         		<div id = "aside">
+		         			<li>
+		         				Line Equations
+		         				<div id = "thinbar"><div id = "bar" style = "width: 33%;"></div></div>
+		         			</li>
+		         			<li>
+		         				Quadratics
+		         				<div id = "thinbar"><div id = "bar" style = "width: 67%;"></div></div>
+		         			</li>
+		         		</div>
+
+		         		
+
+		           </div>
+
+		           <div id = "actions">
+		         		<div id = "leftt"><a href = "/logout">Log Out</a></div>
+		         		<div id = "rightt"><a href = "/settings">Settings</a></div>		
+		         	</div>
+
+	        	</div>
+			</div>
+
+
+
+		    <div class="col-9-12">
+		       <div id = "main" class="content">
+		           <ul class="banner">
+			            <li class="darkblue"></li>
+			            <li class="lightblue"></li>
+			            <li class="aqua"></li>
+			            <li class="orange"></li>
+			            <li class="grey"></li>
+			            <li class="lightgrey"></li> 
+			          </ul>
+			   </div>
+			    	<h1 id = "course_title" contenteditable="true">{{conceptname}}</h1>
+			    	
+
+			    	<ol>
+			          	{% for slide in slides_show %}
+			          	<div id = "block">
+			   			<div id = "title" contenteditable = "true">{{slide.slide_name}}</div>
+			   			<div id = "coursetext" contenteditable = "true">{{slide.slide_text}}</div>
+			   			</div>
+		       			{% endfor %}
+			        </ol>
+			      
+			           <form id = "block" action = "" method="post">
+			            {{ form.hidden_tag() }}
+			             
+			            {{ form.slide_name(class_ = 'addtitle', placeholder = "Enter a title") }}
+			             </br>
+			            {{ form.slide_text(class_ = 'addtext', placeholder = "ENTER EMAIL")  }}
+			             </br>
+			            <input class = "savebutton" type="submit" value="SAVE">
+			          </form>
+
+			        <script>
+			           new Medium({
+						    element: document.getElementById('title'),
+						    mode: 'inline',
+						    placeholder: 'Your Title'
+						});
+			        </script>
+
+			   
+
+			        <script>
+			           new Medium({
+						    element: document.getElementById('coursetext'),
+						    mode: 'rich',
+						    placeholder: 'Your Text'
+						});
+			        </script>
+
+			   </div>
+			   </div>
+			   </div>
+			  
+
+	</body>
+</html>
+
