@@ -9,5 +9,5 @@ from models import User
 
 @dc.route("/")
 def test():
-    return "Dreams Collective"
+    return render_template("index.html")
 
