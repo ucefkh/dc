@@ -11,3 +11,6 @@ from models import User
 def test():
     return render_template("index.html")
 
+@dc.route("/signup")
+def signup():
+	return render_template("signup.html")

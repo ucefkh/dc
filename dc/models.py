@@ -11,10 +11,14 @@ class User(db.Model):
 	lastseen = db.Column(db.String(80))
 
 	def __init__(self, surname, lastname, email, password):
+		self.set_name(fullname)
 		self.surname = surname.title()
 		self.lastname = lastname.title()
 		self.email = email.lower()
 		self.set_password(password)
+
+	def set_name(self, fullname):
+		pass
 
 	def set_password(self, password):
 		self.pwdhash = generate_password_hash(password)
