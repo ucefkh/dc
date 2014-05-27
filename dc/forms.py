@@ -14,3 +14,14 @@ class SignupForm(Form):
 	
 	def __repr__(self):
 		return '<Name %r>' % (self.name)
+
+
+"""
+
+This script declares the datatypes of the input taken by the forms, handles the requirements and 
+most of the front-end validation of the forms. 
+
+We import the User model from the models.py script and the DB file, to enforce superimposition of data points 
+between the two. 
+
+"""
