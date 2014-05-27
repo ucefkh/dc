@@ -10,11 +10,13 @@ class User(db.Model):
 	email = db.Column(db.String(120), unique = True)
 	pwdhash = db.Column(db.String(54))
 	lastseen = db.Column(db.String(80))
+	salt = db.Column(db.String(120))
 
 	def __init__(self, fullname, email, password):
 		self.set_name(fullname)
 		self.email = email
-		self.set_password(password)
+		self.salt = uuid.uuid4().hex
+		self.set_password(password + self.salt)
 
 	def set_name(self, fullname):
 		for i in fullname:
@@ -32,12 +34,11 @@ class User(db.Model):
 			self.lastname = None
 
 	def set_password(self, password):
-		salt = uuid.uuid4().hex
-		self.pwdhash = generate_password_hash(password + salt)
+		self.pwdhash = generate_password_hash(password)
 
 	def check_password(self, password):
 		salt = uuid.uuid4().hex
-		return check_password_hash(self.pwdhash, password + salt)
+		return check_password_hash(self.pwdhash, password + self.salt)
 
 	def __repr__(self):
 		return '<User %r>' % (self.surname)

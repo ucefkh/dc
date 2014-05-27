@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sign Up • Dreams Collective</title>
+</head>
+<body>
+   <h2>sign in</h2>
+     
+      {% for message in form.email.errors %}
+        <div class="flash">{{ message }}</div>
+      {% endfor %}
+       
+      {% for message in form.password.errors %}
+        <div class="flash">{{ message }}</div>
+      {% endfor %}
+       
+       <form action = "" method="post">
+        {{ form.hidden_tag() }}
+         
+        {{ form.email(class_ = 'inputbox', placeholder = "ENTER EMAIL") }}
+         
+        {{ form.password(class_ = 'inputbox', placeholder = "•••••••••••") }} </br>
+         
+        <input class = "button" type="submit" value="Login">
+      </form>
+</body>
+</html>

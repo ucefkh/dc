@@ -15,6 +15,10 @@ class SignupForm(Form):
 	def __repr__(self):
 		return '<Name %r>' % (self.name)
 
+class LoginForm(Form):
+	email = TextField("email", validators = [Required()])
+	password = PasswordField('Password', [validators.Required("Please enter a password.")])
+
 
 """
 
