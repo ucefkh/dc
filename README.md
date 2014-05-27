@@ -9,6 +9,6 @@ Dreams Collective
 3. Redesign profiles
 4. Image uploads and optimized (caching for login)
 5. AJAX quick-load-on-login
-
 6. Search User DB
 7. Create new network connection (using MongoDB)
+8. Build routes for error pages
