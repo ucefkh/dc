@@ -13,7 +13,7 @@ migrate = Migrate(dc, db)
 manager = Manager(dc)
 manager.add_command('db', MigrateCommand)
 
-from dc import views, models
+from dc import chef, models
 
 
 """
@@ -28,6 +28,6 @@ And also gets the config file from the instance folder.
 
 The SQLAlchemy database is instantiated and the migration manager too. 
 
-Then, we just import the contents of the views and models file.
+Then, we just import the contents of the chef and models file.
 
 """
