@@ -13,7 +13,7 @@ def SignUp(form, name, email, password):
             return 0 
 
         else:
-            return "Password Mismatch"
+            return 1
 
     else:
         form.email.errors.append("Error")
