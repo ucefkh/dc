@@ -10,7 +10,7 @@ def SignUp(form, name, email, password):
             db.session.commit()
 
             session['email'] = user.email
-            return render_template('profile.html', email = session['email']) 
+            return 0 
 
         else:
             return "Password Mismatch"

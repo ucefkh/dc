@@ -18,7 +18,9 @@ def test():
 def signup():
     form = SignupForm()
     if request.method == 'POST':
-        SignUp(form, form.name.data, form.email.data, form.password.data)    
+        code = SignUp(form, form.name.data, form.email.data, form.password.data)
+        if code == 0:
+            return render_template('profile.html', email = session['email'])  
     elif request.method == 'GET':
         return render_template('signup.html', form = form)
 
