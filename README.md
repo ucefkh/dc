@@ -3,7 +3,7 @@ Dreams Collective
 
 ## Todo 
 
-0. Comment code (!)
+0. ~~Comment code (!)~~
 1. Send emails to signed up users, via SMTP
 2. Create tokens to allow password resets
 3. Redesign profiles
