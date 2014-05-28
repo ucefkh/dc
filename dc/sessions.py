@@ -1,6 +1,7 @@
 from dc import models, db
 from models import User
 from flask import session, render_template
+import time
 
 def SignUp(form, name, email, password):
     if form.validate_on_submit():
@@ -29,16 +30,20 @@ def SignIn(form, email, password):
                 user.lastseen = time.strftime("%Y-%m-%d")
                 db.session.commit()
 
-                return render_template("profile.html", email = session['email'])
+                return 0
             else:
                 form.email.errors.append("Invalid e-mail or password")
                 return render_template('login.html', form = form)
+        else:
+            form.email.errors.append("Invalid Credentials")
+            return render_template('login.html', form = form)
 
-def DeleteUser():
-	
-	# perm scripts here
+def DeleteUser(email, auth):
+    doomed = User.query.filter_by(email = email).first()
+    db.session.delete(doomed)
+    db.session.commit()
 
-	pass
+    return 0
 		
 		
 		

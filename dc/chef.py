@@ -20,7 +20,9 @@ def signup():
     if request.method == 'POST':
         code = SignUp(form, form.name.data, form.email.data, form.password.data)
         if code == 0:
-            return render_template('profile.html', email = session['email'])  
+            return render_template('profile.html', email = session['email'])
+        elif code == 1:
+            return render_template('profile.html', e)
     elif request.method == 'GET':
         return render_template('signup.html', form = form)
 
@@ -28,6 +30,9 @@ def signup():
 def login():
     form = LoginForm()
     if request.method == 'POST':
-        SignIn(form, form.email.data, form.password.data)           
+        code = SignIn(form, form.email.data, form.password.data) 
+
+        if code == 0:
+            return render_template("profile.html", email = session['email'])          
     elif request.method == 'GET':
         return render_template('login.html', form=form)
