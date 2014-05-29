@@ -1,7 +1,7 @@
 Dreams Collective
 =================
 
-## Broken — *Yes*
+## Broken — *No*
 
 More on this — If the current build is non-functinali on deployement, locally, then I'm probably working on some module, and it won't work right now. Expect this to happen a lot. I'll be uploading stable versions to a parallel repository. 
 

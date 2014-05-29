@@ -1,1 +1,1 @@
-Email config holders
+test_message = "Works1"
