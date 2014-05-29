@@ -10,8 +10,13 @@ import time
 # Test Routes  #
 ################
 
+@dc.route("/test-out")
+def test_mail():
+    from outbound import authorization, mailhandler
+    return "%s %s" % (authorization.test_message ,mailhandler.test_handler)
+
 @dc.route("/")
-def test():
+def home():
     return render_template("index.html")
 
 @dc.route("/signup", methods=['GET', 'POST'])
