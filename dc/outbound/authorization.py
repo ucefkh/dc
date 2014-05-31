@@ -1,3 +1,4 @@
+import dc
 from flask.ext.mail import Message, Mail
 
 dc.config['MAIL_SERVER']='smtp.gmail.com'

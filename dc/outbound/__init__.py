@@ -1,0 +1,3 @@
+import mailhandler
+
+mailhandler.SendMail()
