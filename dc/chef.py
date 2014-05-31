@@ -12,7 +12,6 @@ import time
 
 @dc.route("/test-out")
 def test_mail():
-    from outbound import authorization, mailhandler
     import smtplib
      
     SMTP_SERVER = 'smtp.gmail.com'
@@ -34,15 +33,16 @@ def test_mail():
                "Content-Type: text/html"]
     headers = "\r\n".join(headers)
      
-    session = smtplib.SMTP(server, port)
+    session = smtplib.SMTP(SMTP_SERVER, SMTP_PORT)
      
     session.ehlo()
     session.starttls()
     session.ehlo
-    session.login(sender, password)
+    session.login(sender, "1Q2W3e4r_")
      
     session.sendmail(sender, recipient, headers + "\r\n\r\n" + body)
     session.quit()
+    return "Sent an email"
 
 @dc.route("/")
 def home():
