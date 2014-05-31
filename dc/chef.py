@@ -13,7 +13,36 @@ import time
 @dc.route("/test-out")
 def test_mail():
     from outbound import authorization, mailhandler
-    return "%s %s" % (authorization.test_message ,mailhandler.test_handler)
+    import smtplib
+     
+    SMTP_SERVER = 'smtp.gmail.com'
+    SMTP_PORT = 587
+     
+    sender = 'dev.dreamscollective@gmail.com'
+    recipient = 'mail@arsalanbashir.com'
+    subject = 'Gmail SMTP Test'
+    body = 'Test'
+     
+    """Sends an e-mail to the specified recipient."""
+     
+    body = "" + body + ""
+     
+    headers = ["From: " + sender,
+               "Subject: " + subject,
+               "To: " + recipient,
+               "MIME-Version: 1.0",
+               "Content-Type: text/html"]
+    headers = "\r\n".join(headers)
+     
+    session = smtplib.SMTP(server, port)
+     
+    session.ehlo()
+    session.starttls()
+    session.ehlo
+    session.login(sender, password)
+     
+    session.sendmail(sender, recipient, headers + "\r\n\r\n" + body)
+    session.quit()
 
 @dc.route("/")
 def home():
