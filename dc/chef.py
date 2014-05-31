@@ -13,6 +13,7 @@ import time
 @dc.route("/test-out")
 def test_mail():
     import outbound
+    
     return "Test mail sent"
 
 @dc.route("/")
