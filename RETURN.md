@@ -1,5 +1,5 @@
-Return Code Library
-===================
+Return Code Glossary
+====================
 
 Dictionary to hold values returned by helper functions:
 

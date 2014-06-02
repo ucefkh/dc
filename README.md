@@ -3,7 +3,7 @@ Dreams Collective
 
 ## Broken — *No*
 
-More on this — If the current build is non-functinali on deployement, locally, then I'm probably working on some module, and it won't work right now. Expect this to happen a lot. I'll be uploading stable versions to a parallel repository. 
+More on this — If the current build is non-functionality on deployement, locally, then I'm probably working on some module, and it won't work right now. Expect this to happen a lot. I'll be uploading stable versions to a parallel repository. 
 
 Like a whole different "Stable releases" git. 
 
