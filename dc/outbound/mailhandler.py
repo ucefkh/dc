@@ -21,6 +21,9 @@ def MakeContent(template):
 def SendMail(template, recipients):     
     body = MakeContent(template)
     subject = "Title"
+
+    
+
     """Sends an e-mail to the specified recipient."""
      
     body = "" + body + ""
