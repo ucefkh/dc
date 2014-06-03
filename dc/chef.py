@@ -26,6 +26,7 @@ def signup():
     if request.method == 'POST':
         code = SignUp(form, form.name.data, form.email.data, form.password.data)
         if code == 0:
+            import outbound
             return render_template('profile.html', email = session['email'])
         elif code == 1:
             return render_template('profile.html', e)
