@@ -45,4 +45,4 @@ def SendMail(template, recipients):
     session.sendmail(MAIL_USERNAME, recipient, headers + "\r\n\r\n" + body)
     session.quit()
 	
-	# return render_template('contact.html')
+	 return render_template('contact.html')
