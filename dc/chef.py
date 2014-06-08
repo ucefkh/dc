@@ -6,6 +6,19 @@ from sessions import SignUp, SignIn
 import time
 
 
+#################
+# Error Routes  #
+#################
+
+@dc.errorhandler(404)
+def internal_error(error):
+    return "404 Error", 404
+
+@dc.errorhandler(500)
+def internal_error(error):
+    db.session.rollback()
+    return "Error 500", 500
+
 ################
 # Test Routes  #
 ################
