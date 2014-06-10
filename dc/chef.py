@@ -3,6 +3,7 @@ from dc import dc, db, models
 from forms import SignupForm, LoginForm
 from models import User
 from sessions import SignUp, SignIn
+import outbound
 import time
 
 
@@ -25,7 +26,6 @@ def internal_error(error):
 
 @dc.route("/test-out")
 def test_mail():
-    import outbound
     outbound.mailhandler.SendMail("arsalan.b4@gmail.com")
 
     return "Sent"
@@ -39,8 +39,9 @@ def signup():
     if request.method == 'POST':
         code = SignUp(form, form.name.data, form.email.data, form.password.data)
         if code == 0:
-            import outbound
-            return render_template('profile.html', email = session['email'])
+            email = session['email']
+            outbound.mailhandler.SendMail(email)
+            return render_template('profile.html', email = email)
         elif code == 1:
             return render_template('profile.html', e)
     elif request.method == 'GET':
