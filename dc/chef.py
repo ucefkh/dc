@@ -26,9 +26,9 @@ def internal_error(error):
 @dc.route("/test-out")
 def test_mail():
     import outbound
-    
-    return "Test mail sent"
+    outbound.mailhandler.SendMail("arsalan.b4@gmail.com")
 
+    return "Sent"
 @dc.route("/")
 def home():
     return render_template("index.html")
