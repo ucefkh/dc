@@ -73,6 +73,25 @@ def logout():
     return redirect(url_for('home'))
 
 ###
+
 @dc.route("/feed", methods = ['GET', 'POST'])
 def feed():
-    return render_template("feed.html")
+    from twitter import *
+    x = []
+    a = []
+    auth = OAuth(
+    consumer_key='works',
+    consumer_secret='works',
+    token='works',
+    token_secret='works')
+
+    t = Twitter(auth=auth)
+    iterator = t.statuses.home_timeline(count=10)
+    
+    for tweet in iterator:
+        x.append(tweet)
+
+    for i in x:
+        a.append(i["text"])
+
+    return str(a)
