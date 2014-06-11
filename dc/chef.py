@@ -61,3 +61,8 @@ def login():
             return render_template("profile.html", email = session['email'])          
     elif request.method == 'GET':
         return render_template('login.html', form=form)
+
+
+@dc.route("/feed", methods = ['GET', 'POST'])
+def feed():
+    return render_template("feed.html")
