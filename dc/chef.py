@@ -30,25 +30,10 @@ def test_mail():
 
     return "Sent"
 
-@dc.route('/upload', methods=['GET', 'POST'])
-def upload():
-    if request.method == 'POST' and 'photo' in request.files:
-        filename = photos.save(request.files['photo'])
-        rec = Photo(filename=filename, user=g.user.id)
-        rec.store()
-        flash("Photo saved.")
-        return redirect(url_for('show', id=rec.id))
-    return render_template('upload.html')
 
-@dc.route('/photo/<id>')
-def show(id):
-    photo = Photo.load(id)
-    if photo is None:
-        abort(404)
-    url = photos.url(photo.filename)
-    return render_template('show.html', url=url, photo=photo)
-
-##############
+######################
+# Session Management #
+######################
 
 @dc.route("/")
 def home():
@@ -79,7 +64,15 @@ def login():
     elif request.method == 'GET':
         return render_template('login.html', form=form)
 
+@dc.route('/logout')
+def logout():
+    if 'email' not in session:
+        return redirect(url_for('login'))
+    
+    session.pop('email', None)
+    return redirect(url_for('home'))
 
+###
 @dc.route("/feed", methods = ['GET', 'POST'])
 def feed():
     return render_template("feed.html")
