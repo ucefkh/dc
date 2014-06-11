@@ -29,6 +29,10 @@ def test_mail():
     outbound.mailhandler.SendMail("arsalan.b4@gmail.com")
 
     return "Sent"
+
+
+##############
+
 @dc.route("/")
 def home():
     return render_template("home.html")
