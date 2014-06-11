@@ -12,5 +12,5 @@ Like a whole different "Stable releases" git.
 0. Photo Uploads (Profile Pictures)
 1. Add to Network
 2. Text updates
-3. Log Out
+3. ~~Log Out~~
 4. Messages
