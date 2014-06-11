@@ -1,7 +1,7 @@
 #position{
 	width: 150px;
 	margin: 0 auto;
-	margin-top: 200px;
+	margin-top: 140px;
 }
 
 #logo{
@@ -16,7 +16,12 @@
 	font-weight: 600;
 	font-size: 70px;
 	padding: 25px;
-	padding-top: 30px;
+	padding-top: 25px;
 	margin: 0;
 	color: #FFF;
+}
+
+#breadslash{
+	text-align: right;
+	margin: 60px;
 }
