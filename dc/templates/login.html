@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Sign Up • Dreams Collective</title>
-</head>
-<body>
-   <h2>sign in</h2>
+{% extends "public_view.html" %}
+{% block title %}Log In{% endblock %}
+{% block head %}
+{% endblock %}
+{% block c %}
+class="active"
+{% endblock %}
+{% block content %}
+    <h2>sign in</h2>
      
       {% for message in form.email.errors %}
         <div class="flash">{{ message }}</div>
@@ -23,5 +25,4 @@
          
         <input class = "button" type="submit" value="Login">
       </form>
-</body>
-</html>
+{% endblock %}

@@ -31,7 +31,7 @@ def test_mail():
     return "Sent"
 @dc.route("/")
 def home():
-    return render_template("index.html")
+    return render_template("home.html")
 
 @dc.route("/signup", methods=['GET', 'POST'])
 def signup():

@@ -1,10 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Sign Up • Dreams Collective</title>
-</head>
-<body>
-<h2>Sign up</h2>       
+{% extends "public_view.html" %}
+{% block title %}Sign Up{% endblock %}
+{% block head %}
+{% endblock %}
+{% block b %}
+class="active"
+{% endblock %}
+{% block content %}
+          
+          <div id = "form_holder">
+          <h2>Sign up</h2> 
           {% for message in form.name.errors %}
             <div class="flash">{{ message }}</div>
           {% endfor %}
@@ -19,15 +23,15 @@
           <form action = "" method="post">
             {{ form.hidden_tag() }}
              
-            {{ form.name(class_ = 'inputbox', placeholder = "FULL NAME") }}
+            {{ form.name(class_ = 'form-control', placeholder = "Your full name, please...") }}
              </br>
-            {{ form.email(class_ = 'inputbox', placeholder = "ENTER EMAIL")  }}
+            {{ form.email(class_ = 'form-control', placeholder = "Where can we reach you? (email)")  }}
              </br>
-            {{ form.password(class_ = 'inputbox', placeholder = "••••••••••")  }}
+            {{ form.password(class_ = 'form-control', placeholder = "••••••••••")  }}
              </br>
-             {{ form.repassword(class_ = 'inputbox', placeholder = "••••••••••")  }}
+             {{ form.repassword(class_ = 'form-control', placeholder = "••••••••••")  }}
              </br>
-            <input class = "button" type="submit" value="Sign Up">
+            <input type="submit" class="btn btn-default btn-lg">
           </form>
-</body>
-</html>
+          </div>
+{% endblock %}

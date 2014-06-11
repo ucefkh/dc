@@ -25,3 +25,19 @@
 	text-align: right;
 	margin: 60px;
 }
+
+#form_holder{
+	width: 300px;
+	margin: 0 auto;
+	text-align: center;
+	border: 1px #ddd solid;
+	border-radius: 8px;
+	padding: 20px;
+}
+
+h2{
+	font-family: "Avenir";
+	text-transform: uppercase;
+	font-size: 20px;
+	padding-bottom: 30px;
+}
