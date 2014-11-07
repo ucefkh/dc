@@ -1,43 +1,323 @@
-#position{
-	width: 150px;
-	margin: 0 auto;
-	margin-top: 140px;
+/* == Helpers == */
+.date_sent{font-size: 0.75em;}
+.thread{height: 400px;
+overflow-x: hidden;
+overflow-y: scroll;
+position: relative;}
+/* CLEARFIX */
+
+.clearfix:after{
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+.clearfix{ 
+	display: inline-block; 
 }
 
-#logo{
+/* start commented backslash hack \*/
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+/* close commented backslash hack */
+
+/* END CLEARFIX */
+
+.navbar {
+    margin-bottom: 0;
+}
+
+#spacer150{
+	height: 120px;
+}
+
+#spacer100{
+	height: 70px;
+}
+
+#spacer50{
+	height: 50px;
+}
+
+#spacer20{
+	height: 20px;
+}
+
+#spacer10{
+	height: 10px;
+}
+
+#float-right{
+	float: right;
+}
+
+#feed_float{
+	margin-left: 250px;
+}
+
+/* == Upper Block == */
+
+#profile_picture{
+	max-width: 150px;
+	border: 3px #ddd solid;
+	margin-left: 45px;
+	margin-top: 220px;
+	width: 200px;
 	height: 150px;
-	width: 150px;
-	border-radius: 150px;
-	background-color: #000;
+	background-size: 100%;
 }
 
-#logo p{
-	font-family: "Montserrat";
-	font-weight: 600;
-	font-size: 70px;
-	padding: 25px;
-	padding-top: 25px;
-	margin: 0;
+#profile_picture_focus{
+	border: 3px #ddd solid;
+	margin-left: 60px;
+	margin-top: -60px;
+	width: 130px;
+	height: 130px;
+	background-size: 100%;
+}
+
+#MainName{
+	font-family: 'Helvetica';
+	font-size: 40px;
 	color: #FFF;
+	margin-left: 210px;
+	margin-top: -160px;
 }
 
-#breadslash{
-	text-align: right;
-	margin: 60px;
+#MainName_focus{
+	font-family: 'Helvetica';
+	font-size: 40px;
+	color: #FFF;
+	margin-left: 210px;
+	margin-top: -130px;
+	text-transform: capitalize;
 }
 
-#form_holder{
-	width: 300px;
-	margin: 0 auto;
-	text-align: center;
-	border: 1px #ddd solid;
-	border-radius: 8px;
+#MainInfo{
+	margin-left: 210px;
+	color: #FFF;
+	line-height: 24px;
+	font-size: 16px;
+}
+
+#cover{
+	height: 400px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+#cover_focus{
+	width: 100%;
+	height: 100px;
+	background-size: 100%;
+}
+
+#NavBoat{
+	position: absolute;
+	background: rgba(255,255,255,0.7);
+	padding: 10px;
+	border-radius: 10px;
+	right: 100px;
+	top: 290px;
+}
+
+#NavBoat_focus{
+	position: absolute;
+	background: rgba(255,255,255,0.7);
+	padding: 10px;
+	border-radius: 10px;
+	right: 100px;
+	top: 20px;
+}
+
+/* == Content Layout Visual == */
+
+#public{
+	background: #FFF;
+	border-left: 1px #DDD solid;
+	border-right: 1px #DDD solid;
+	border-bottom: 1px #DDD solid;
 	padding: 20px;
 }
 
-h2{
-	font-family: "Avenir";
-	text-transform: uppercase;
-	font-size: 20px;
-	padding-bottom: 30px;
+#private{
+	background: #111;
+	border-left: 1px #DDD solid;
+	border-right: 1px #DDD solid;
+	border-bottom: 1px #DDD solid;
+	padding: 60px;
+
+}
+
+#profile_tab a:active, #profile_tab a:hover, #profile_tab a{
+	background: #111;
+	color: #FFF;
+}
+
+#profile_tab a:hover{
+	border: 1px #111 solid;
+}
+
+/* == POST HOLDER ==*/
+
+#poster{
+	padding: 20px;
+	width: 550px;
+	height: 170px;
+	border: 1px #DDD solid;
+}
+
+#poster #content{
+	width: 100%;
+	height: 80px;
+	padding: 20px;
+}
+
+div.upload {
+    width: 34px;
+    margin-top: 15px;
+    float: right;
+    height: 34px;
+    border: 1px #DDD solid;
+    border-radius: 5px;
+    background: url(../static/img/upload.png);
+    background-size: 32px;
+    overflow: hidden;
+}
+
+div.upload input {
+    display: inline-block;
+    width: 157px !important;
+    height: 57px !important;
+    opacity: 0 !important;
+    overflow: hidden !important;
+}
+
+#post-button{
+	display: inline-block;
+	float: right;
+	margin: 15px;
+}
+
+/* == EACH POST == */
+
+#container{
+	margin-left: 30px;
+	margin-bottom: 60px;
+}
+
+#post-each{
+	padding: 20px;
+	width: 550px;
+	margin-top: 10px;
+	border: 1px #DDD solid;
+
+}
+
+#post-each:hover{
+	border: 1px #119D99 solid;
+}
+
+#small-profile{
+	width: 50px;
+	height: 50px;
+	background-size: 100%;
+	float: left;
+	border-radius: 5px;
+}
+
+#username-post{
+	font-size: 18px;
+	font-weight: 200;
+	vertical-align: top;
+	padding: 0px 15px;
+	width: 100px;
+}
+
+#post-info{
+	display: inline;
+}
+
+#post-info p{
+	margin-left: 66px;
+	font-weight: 100;
+	opacity: 0.5;
+}
+
+#username-post span{
+	margin-left: -90px;
+}
+
+#post-content{
+	margin-left: 67px;
+}
+
+#post-content p{
+	font-size: 18px;
+}
+
+#post-image{
+	max-width: 400px;
+}
+
+/* == TASKS == */
+
+#tasks{
+	margin-left: 30px;
+	padding: 20px 0px;
+}
+
+/* == FOOTER == */
+
+footer{
+	width: 100%;
+	height: 30px;
+	border-top: 1px #DDD solid;
+}
+
+footer p{
+	font-size: 16px;
+	padding: 20px;
+}
+
+/* == UPLOAD FOR PROFILE == */
+
+#uploadbox{
+	position: absolute;
+	background: rgba(255,255,255,0.5);
+	right: 100px;
+	top: 40px;
+	width: 430px;
+	padding: 15px;
+	border-radius: 10px;
+	display: none;
+}
+
+#org-up li{
+	display: inline;
+	font-weight: 400;
+	font-size: 16px;
+}
+
+/* == MESSAGING == */
+
+.message-box{
+	width: 100%;
+	height: 90px;
+	margin-bottom: 20px;
+}
+
+#project-chat-select{
+	background: #DDD;
+	color: #000;
+	border: 3px #FFF solid;
+}
+
+#chat-select{
+	margin-top: 50px;
 }
