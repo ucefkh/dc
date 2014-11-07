@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Messages | Dreams Collective</title>
+	<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/static/base.css">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+	<script src="/static/js/jquery.min.js"></script>
+	<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+	<script type="text/javascript" href="/static/js/bootstrap.min.js"></script>
+	<script src="http://malsup.github.com/jquery.form.js"></script> 
+	<!--<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>-->
+</head>
+<body>
+<div class="clearfix">
+	<ul id = "NavBoat" class="nav nav-pills">
+	  <li><a href="">View Feed</a></li>
+	  <li><a href="#">Profile</a></li>
+	  <li id="edit"><a href="#">Edit</a></li>
+	  <li class="active"><a href="/{{user.username}}/messages">Messages<span class="badge pull-right">2</span></a></li>
+	  <li><div class="dropdown">
+  		<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">Others<span class="caret"></span></button>
+	  		<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+			    <li role="presentation"><a role="menuitem" tabindex="-1" href="/settings">Settings</a></li>
+			    <li role="presentation"><a role="menuitem" tabindex="-1" href="/settings/privacy">Privacy</a></li>
+			    <li role="presentation"><a role="menuitem" tabindex="-1" href="/payments">Payments</a></li>
+			    <li role="presentation" class="divider"></li>
+			    <li role="presentation"><a role="menuitem" tabindex="-1" href="/logout">Log Out</a></li>
+	  		</ul>
+	  </div></li>
+	</ul>
+	<div>
+	<img id = "cover" src="{{user.cover_location}}">
+	<img id = "profile_picture" src="{{user.image_location}}">
+
+  	<div id="MainName">{{user.firstname}} {{user.lastname}}</div>
+  	<div id="MainInfo">
+  		<div>Works at Apple</div>
+  		<div>Lives in Dubai, UAE</div>
+  		<div>@Arsalan</div>
+  		<div><span class="label label-info">VERIFIED</span></div>
+  	</div>
+  	</div>
+</div>
+<div class="container">
+   			<div id="spacer50"></div>
+   			<h3>Private Threads</h3>
+   			<div id="spacer50"></div>
+   		<div id="personal-threads">
+			<div id="tabs">
+			  <ul></ul> <!-- DO NOT remove any of these elements even if they are empty -->
+			</div>
+			<script>
+				String.prototype.escapeSpecialChars = function() {
+					return this.replace(/\\n/g, "\\n")
+							   .replace(/\\'/g, "\\'")
+							   .replace(/\\"/g, '\\"')
+							   .replace(/\\&/g, "\\&")
+							   .replace(/\\r/g, "\\r")
+							   .replace(/\\t/g, "\\t")
+							   .replace(/\\b/g, "\\b")
+							   .replace(/\\f/g, "\\f");
+				};
+				var threads = {"index":0,rmsg:0,smsg:0,senders:[],recievers:[]};
+				var rmsg = [];
+				var smsg = [];
+				tmp ="";
+			</script>
+			{% for message in rmessages %}
+			<script>
+				tmp = "{{message.text|striptags|safe}}";
+				rmsg[threads.rmsg] = {"from":"{{message.sender}}","to":"{{message.receiver}}","txt":tmp.escapeSpecialChars(),"date":"{{message.date_sent}}"};
+				threads.rmsg++;
+				if(threads.recievers.indexOf("{{message.receiver}}") < 0)
+					threads.recievers.push("{{message.receiver}}");
+				//~ console.log(threads.rmsg)
+			</script>
+			{% endfor %}
+			{% for message in smessages %}
+			<script>
+				tmp = "{{message.text|striptags|safe}}";
+				smsg[threads.smsg] = {"from":"{{message.sender}}","to":"{{message.receiver}}","txt":tmp.escapeSpecialChars(),"date":"{{message.date_sent}}"};
+				threads.smsg++;
+				if(threads.senders.indexOf("{{message.sender}}") < 0)
+					threads.senders.push("{{message.sender}}");
+			</script>
+			{% endfor %}
+
+			
+		</div>
+		<div id="spacer50"></div>
+		<form style="display:none" class="form_box" id="text_box" action="/{{user.username}}/send" method="post" name="message" enctype="multipart/form-data">
+			<textarea id="mtxt" class='message-box' placeholder="Say hello" name="message" rows=3 cols=80></textarea>
+			<button id="smessage" type="submit" value="Post" class="btn btn-primary">Send</button>
+            <label for="addimage" style="float:left;padding-right:2%;">Attach an Image</label>
+			<input type="hidden" name="username" id="sendto" />				
+			<input type="file" name="message_image" id="addimage" />				
+		</form>
+   	</div>
+</div>
+  <style>
+	  .ui-tabs-vertical { width: 55em; }
+	  .ui-tabs-vertical .ui-tabs-nav { padding: .2em .1em .2em .2em; float: left; width: 12em; }
+	  .ui-tabs-vertical .ui-tabs-nav li { clear: left; width: 100%; border-bottom-width: 1px !important; border-right-width: 0 !important; margin: 0 -1px .2em 0; }
+	  .ui-tabs-vertical .ui-tabs-nav li a { display:block; }
+	  .ui-tabs-vertical .ui-tabs-nav li.ui-tabs-active { padding-bottom: 0; padding-right: .1em; border-right-width: 1px; border-right-width: 1px; }
+	  .ui-tabs-vertical .ui-tabs-panel { padding: 1em; float: right; width: 40em;}
+  </style>
+<script>
+$(document).ready(function($) {
+	
+	threads.recievers.map(function(x){
+		//~ console.log("Loop Start "+threads.recievers);
+		//~ console.log("Reciever "+x);
+		$("#tabs ul").append('<li><a href="#tabs-'+threads.index+'">'+x+'       </a></li>');
+
+		var result1 = $.grep(rmsg, function(e){ return e.to === x; });
+		var result2 = $.grep(smsg, function(e){ return e.from === x; });
+		var result = result1.concat(result2);
+		result.sort(function(a,b){
+		  // Turn your strings into dates, and then subtract them
+		  // to get a value that is either negative, positive, or zero.
+		  return new Date(a.date) - new Date(b.date);
+		});
+		//~ console.log("Grep result : "+result);
+		var i=0;
+		$("#tabs").append('<div id="tabs-'+threads.index+'" class="thread"></div>');
+		result.map(function(r){//data -id message1_thread2
+			$('#tabs-'+threads.index).append('<div class="message" data-id="'+i+'" id="message'+i+'"><h2>'+r.from+'</h2><p>'+r.txt+'</p><i class="date_sent">'+r.date+'</i></div>');
+			i++;
+		});
+		$( "#text_box" ).clone().appendTo('#tabs-'+threads.index);
+		$('#tabs-'+threads.index+" form").attr("id","text_box"+threads.index);
+		$("#text_box"+threads.index+" #sendto").val(x);
+		
+		var options = {
+			url:"/{{user.username}}/send",
+			lindex: threads.index,
+		    success:    function(data) {
+				mid = $("#text_box"+this.lindex).parent(".thread").find(".message").last().data("id");
+				$("#text_box"+this.lindex).parent(".thread").find(".message").last().after('<div class="message" id="message'+mid+'" data-id="'+mid+'"><h2>{{user.username}}</h2><p>'+data.message+'</p><i class="date_sent">'+(new Date())+'</i></div>');
+				//~ console.log("mid : "+mid+" element"+$("#text_box"+this.lindex).text());
+				$("#text_box"+this.lindex).find("textarea").val('');
+				}
+	    };
+		$("#text_box"+threads.index).ajaxForm(options);
+		
+		$("#text_box"+threads.index).show();
+		threads.index++;
+	});
+	
+	$( "#tabs" ).tabs().addClass( "ui-tabs-vertical ui-helper-clearfix" );
+    $( "#tabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
+		
+	$('.form_box').submit(function() {
+	    // return false to prevent normal browser submit and page navigation 
+	    return false; 
+	});
+});
+</script>
+</body>
+</html>
