@@ -1,9 +1,41 @@
 {% extends "private_view.html" %}
-{% block title %}Log In{% endblock %}
-{% block head %}
-{% endblock %}
-{% block c %}
-class="active"
-{% endblock %}
+{% block title %}{{user.firstname}} {{user.lastname}}{% endblock %}
 {% block content %}
+
+    <div id="container" class="row">
+		<div class="col-md-9" id="left-bar">
+    		<form id="poster" class="clearfix" action = "" method="post" name="poster" enctype="multipart/form-data">
+					{{ form.content(placeholder = "What's on your mind?")}}
+					<div class="upload">
+						{{ form.image() }}
+					</div>
+					<input id="post-button" type="submit" class="btn btn-md btn-primary" value="Post">
+			</form>
+			{% for post in user.posts|sort(attribute='timestamp', reverse = True) %}
+			{% for writer in post.writers%}
+			<div id = "post-each">
+
+			  <div id="small-profile" style="background-image:url({{writer.image_location}});"></div>
+			  		<div id="post-info">
+				  		<a id = "username-post" href="/{{writer.username}}">{{writer.firstname}} {{writer.lastname}}</a>
+				  		<p>{{post.timestamp}}</p>
+			  		</div>
+			  		<div id="post-content">
+			  		<p>{{post.body}}</p>
+						{% if post.image != None %}
+						{% if post.image.endswith('mp3') %}
+						<audio controls>
+				                <source src="static/uploads/{{post.author.username}}/{{post.image}}" type="audio/mp3">
+				                Your browser does not support this audio format.
+				        </audio>
+						{% else %}
+						<img id = "post-image" src = "static/uploads/{{post.author.username}}/{{post.image}}">
+						{% endif %}
+						{% endif %}
+					</div>
+			</div>
+			{% endfor %}
+			{% endfor %}
+        </div>
+    </div> 	
 {% endblock %}
